@@ -6,6 +6,7 @@
 
 using namespace std;
 class Fournisseur;
+class Cave;
 
 class Offre{// un fournisseur offre des vins a un prix
     private :   

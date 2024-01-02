@@ -10,7 +10,7 @@
 
 #include"Vin.hpp"
 #include"Fournisseur.hpp"
-
+class Offre;
 class Vente;
 //represente une cave vendant des vins;
 class Cave{
@@ -36,7 +36,7 @@ class Vente{
         Cave* vendeur;
         Vin* vin;
         float prixVente;
-        vector<Offre*> listeOffre;
+        std::vector<Offre*> listeOffre;
     public : 
         Vente(Cave* c, Vin* v, float prix);
         float getPrixVente();
