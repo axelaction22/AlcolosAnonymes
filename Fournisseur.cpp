@@ -38,6 +38,8 @@ void Fournisseur::deleteReduction(Reduction* reduc){
 
 
 
+
+
 //Offre
 
 Offre::Offre(Vin* v, float price, Fournisseur* f){

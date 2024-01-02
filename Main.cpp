@@ -26,6 +26,9 @@ int main(){
     cave1->ajouterVin(Vin1, 50.0);
     cave1->ajouterVin(Vin2, 35.0);
     cave1->RetirerVin(Vin1);
-    cout<<"something";
+
+    cave1->toString();
+    cave1->afficherListeVente();
+    cave1->afficherListeVins();
 }
 

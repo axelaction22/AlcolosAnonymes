@@ -6,7 +6,7 @@
 #include<vector>
 #include<algorithm>
 #include<iterator>
-
+#include<iostream>
 using namespace std;
 
 Cave::Cave(int identifier, string nom, string adresse){
@@ -19,15 +19,15 @@ Cave::Cave(int identifier, string nom, string adresse){
 /// @param p
 /// @returns true si succes et false si vin deja present 
 bool Cave::ajouterVin(Vin *vin, float prix){
-    
+    //Si on ne trouve pas le vin dans la liste, on le rajoute
     if(find(listeVins.begin(),listeVins.end(),vin) == listeVins.end()){
-        return false;
-    }//si le vin n'est pas dans la cave, on ne peut l'enlever.
-
-    listeVins.push_back(vin);
-    Vente* v = new Vente(this, vin, prix);
-    listeVente.push_back(v);
-    return true;
+        listeVins.push_back(vin);
+        Vente* v = new Vente(this, vin, prix);
+        listeVente.push_back(v);
+        return true;
+    }
+    return false;
+    
 }
 void Cave::RetirerVin(Vin* vin){
     if(find(listeVins.begin(),listeVins.end(),vin)!=listeVins.end()){
@@ -60,6 +60,28 @@ void Cave::retirerOffre(Offre* const offre){
     for(Vente* vente : listeVente){
         vente->retirerOffre(offre);
     }
+}
+
+void Cave::toString(){
+    cout<<"Nom: "<<nom<<endl;
+    cout<<"Adresse: "<<adresse<<endl;
+}
+
+void Cave::afficherListeVins(){
+    cout<<"Liste des Vins: "<<endl;
+    for (Vin* vin : listeVins) {
+        if (vin != nullptr) { // Vérifie que le pointeur n'est pas nul avant de l'utiliser
+            cout << vin->getNom() <<endl;
+        }
+}
+}
+void Cave::afficherListeVente(){
+    cout<<"Liste des Ventes: "<<endl;
+    for (Vente* vente : listeVente) {
+        if (vente != nullptr) { // Vérifie que le pointeur n'est pas nul avant de l'utiliser
+            std::cout << vente->getVin()->getNom()<<": "<<vente->getPrixVente()<<" | Vendeur :"<<vente->getVendeur()->nom<<endl;
+        }
+}
 }
 
 //Vente : 

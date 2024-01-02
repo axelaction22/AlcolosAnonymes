@@ -29,6 +29,10 @@ class Cave{
         void prendreOffre(Offre* const offre);
         void retirerOffre(Offre* const offre);
 
+        void toString();
+        void afficherListeVins();
+        void afficherListeVente();
+
 };
 // Classe d'association avec vin, prix de vente par vin
 class Vente{
