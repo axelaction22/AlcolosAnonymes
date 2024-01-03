@@ -18,6 +18,7 @@ class Offre{// un fournisseur offre des vins a un prix
         Vin* getVin();
         float getPrix();
         Fournisseur* getFournisseur();
+        void afficherResume();
 };
 
 class Reduction{
@@ -27,6 +28,7 @@ class Reduction{
         int BouteillesMax;
     public :
         Reduction(float per,int min, int max);
+        void afficherResume();
 };
 
 class Fournisseur{
@@ -42,6 +44,9 @@ class Fournisseur{
         void deleteOffre(Offre* offre,vector<Cave> const listeCave);
         Reduction* creerReduction(int min, int max, float percent);
         void deleteReduction(Reduction* reduc);
+        void afficherResume();
+        void afficherListeOffres();
+        void afficherListeReductions();
 };
 
 #endif

@@ -27,7 +27,7 @@ int main(){
     cave1->ajouterVin(Vin2, 35.0);
     cave1->RetirerVin(Vin1);
 
-    cave1->toString();
+    cave1->afficherResume();
     cave1->afficherListeVente();
     cave1->afficherListeVins();
 }

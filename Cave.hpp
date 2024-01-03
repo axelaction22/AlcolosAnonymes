@@ -29,7 +29,7 @@ class Cave{
         void prendreOffre(Offre* const offre);
         void retirerOffre(Offre* const offre);
 
-        void toString();
+        void afficherResume();
         void afficherListeVins();
         void afficherListeVente();
 
@@ -51,6 +51,9 @@ class Vente{
         void setVendeur(Cave* c);
         void prendreOffre(Offre* const offre);
         void retirerOffre(Offre* const offre);
+
+        void afficherResume();
+        void afficherListeOffre();
 };
 
 

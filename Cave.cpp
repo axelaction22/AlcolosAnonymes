@@ -62,24 +62,27 @@ void Cave::retirerOffre(Offre* const offre){
     }
 }
 
-void Cave::toString(){
+void Cave::afficherResume(){
     cout<<"Nom: "<<nom<<endl;
     cout<<"Adresse: "<<adresse<<endl;
 }
-
+//Affiche un rapide résumer des Vins- Pourra avoir de chaque vin via la fonction afficherdetail() dans vin
 void Cave::afficherListeVins(){
     cout<<"Liste des Vins: "<<endl;
     for (Vin* vin : listeVins) {
         if (vin != nullptr) { // Vérifie que le pointeur n'est pas nul avant de l'utiliser
-            cout << vin->getNom() <<endl;
+            vin->afficherResume();
+            cout<<endl;
         }
 }
 }
+//Affiche un rapide résumer des ventes - Pourra avoir de chaque vente via la fonction afficherdetail() dans vente
 void Cave::afficherListeVente(){
     cout<<"Liste des Ventes: "<<endl;
     for (Vente* vente : listeVente) {
         if (vente != nullptr) { // Vérifie que le pointeur n'est pas nul avant de l'utiliser
-            std::cout << vente->getVin()->getNom()<<": "<<vente->getPrixVente()<<" | Vendeur :"<<vente->getVendeur()->nom<<endl;
+           vente->afficherResume();
+           cout<<endl;
         }
 }
 }
@@ -109,5 +112,26 @@ void Vente::retirerOffre(Offre* const offre){
 
     listeOffre.erase(find(listeOffre.begin(),listeOffre.end(),offre));
 }
+
+void Vente::afficherResume(){
+    cout<<"Cave :"<<endl;
+    vendeur->afficherResume();
+    cout<<"Vin :"<<endl;
+    vin->afficherResume();
+    cout<<"Prix :"<<prixVente<<endl;
+    cout<<endl;
+}
+
+void Vente::afficherListeOffre(){
+    cout<<"Liste des Ventes: "<<endl;
+    for (Offre* offre : listeOffre) {
+        if (offre != nullptr) { // Vérifie que le pointeur n'est pas nul avant de l'utiliser
+            offre->afficherResume();
+            cout<<endl;
+        }
+    }
+}
+
+
 #endif
 

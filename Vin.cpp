@@ -33,6 +33,13 @@ VinConso::VinConso(int id, string rp,string cru,string nom,int millesime, int an
     this->annee = annee;
 }
 
+void Vin::afficherResume(){
+    cout<<nom<<":"<<endl;
+    cout<<"Région de production: "<<regionProd<<endl;
+    cout<<"Cru: "<<cru<<endl;
+    cout<<"Millenisme: "<<millesime<<endl;
+}
+
 
 #endif
 

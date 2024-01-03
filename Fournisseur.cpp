@@ -32,6 +32,28 @@ Reduction* Fournisseur::creerReduction(int min, int max, float percent){
 void Fournisseur::deleteReduction(Reduction* reduc){
     reductionsOffertes.erase(find(reductionsOffertes.begin(),reductionsOffertes.end(),reduc));
 }
+void Fournisseur::afficherResume(){
+    cout<<"Nom du Fournisseur :"<<nom<<endl;
+    cout<<"Adresse :"<<adresse<<endl;
+}
+void Fournisseur::afficherListeOffres(){
+    cout<<"Liste des Offres du Fournisseur : "<<nom<<endl;
+    for (Offre* offre : offres) {
+        if (offre != nullptr) { // Vérifie que le pointeur n'est pas nul avant de l'utiliser
+           offre->afficherResume();
+        }
+    }
+}
+void Fournisseur::afficherListeReductions(){
+    cout<<"Liste des Reductions du Fournisseur : "<<nom<<endl;
+    for (Reduction* reduction : reductionsOffertes) {
+        if (reduction != nullptr) { // Vérifie que le pointeur n'est pas nul avant de l'utiliser
+           reduction->afficherResume();
+           cout<<endl;
+        }
+    }
+}
+
 
 
 
@@ -53,11 +75,22 @@ float Offre::getPrix(){return prix;}
 Vin*         Offre::getVin() { return vin; }
 Fournisseur* Offre::getFournisseur(){return fournisseur;}
 
+void Offre::afficherResume(){
+    cout<<"Vin: "<<vin->getNom()<<endl;
+    cout<<"Prix de l'offre: "<<prix<<endl;
+    cout<<"Fournisseur: "<<fournisseur<<endl;
+}
+
 //Reduction
 Reduction::Reduction(float per, int min, int max){
     percentage = per;
     BouteillesMax = max;
     BouteillesMin = min;
+}
+void Reduction::afficherResume(){
+    cout<<"La reduction est de :"<<percentage<<endl;
+    cout<<"Nombre de bouteilles minimun :"<<BouteillesMin<<endl;
+    cout<<"Nombre de bouteilles maximun :"<<BouteillesMax<<endl;
 }
 
 

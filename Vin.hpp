@@ -8,6 +8,7 @@
 #ifndef VIN_HPP
 #define VIN_HPP
 
+#include <iostream>
 #include<stdio.h>
 #include<string>
 #include<vector>
@@ -28,6 +29,7 @@ class Vin {
         std::string getCru();
         std::string getNom();
         int getMillesime();
+        void afficherResume();
 };
 
 
