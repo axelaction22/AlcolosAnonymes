@@ -13,6 +13,7 @@ Vin::Vin(int id, string rp, string cru, string nom, int millesime){
     this->millesime = millesime;
 }
 
+Vin::~Vin(){}
 int Vin::getIdentifiant(){return identifiant;}
 
 string Vin::getRegionProd(){return regionProd;}
@@ -39,7 +40,35 @@ void Vin::afficherResume(){
     cout<<"Cru: "<<cru<<endl;
     cout<<"Millenisme: "<<millesime<<endl;
 }
+string Vin::getSaveFormat(){
+    return "wrong function!";
+}
+/// @brief chaine de caractere representant les donnés d'un VinGarde, pour sauvegarde.
+string VinGarde::getSaveFormat(){
+    string s = "";
+    s += "G;";
+    s += to_string(identifiant) + ";"; // std::to_string to convert in to string 
+    s += regionProd  + ";";
+    s += cru  + ";";
+    s += nom  + ";";
+    s += to_string(millesime) + ";";
+    s += conservMin + "\n";
+    return s;
+}
 
+/// @brief chaine de caractere representant les donnés d'un VinGarde, pour sauvegarde.
+string VinConso::getSaveFormat(){
+    string s = "";
+    s += "G;";
+    s += to_string(identifiant) + ";"; // std::to_string to convert in to string 
+    s += regionProd  + ";";
+    s += cru  + ";";
+    s += nom  + ";";
+    s += to_string(millesime) + ";";
+    s += to_string(annee) + "\n";
+    return s;
+
+}
 
 #endif
 

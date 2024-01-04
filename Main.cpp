@@ -5,12 +5,36 @@
 #include "Cave.hpp"
 #include "Fournisseur.hpp"
 #include<iostream>
+#include<fstream>
+
 using namespace std;
 
-Vin createVinConso(int id, string rp,string cru,string nom,int millesime){
-    Vin v = Vin(id, rp, cru, nom, millesime);
-    return v;
+
+void Save(vector<Vin> const vins,vector<Cave> const caves,vector<Fournisseur> const fournisseurs){
+    //sauvegarde les trois objets principaux et leurs liens,dans l'emplacement d'ou est appelé l'executable
+    string dirVin = "SavedWines.txt";
+    string dirCaves = "SavedWines.txt";
+    string dirFournisseurs = "SavedWines.txt";
+    fstream fileVin;
+    fstream fileCave;
+    fstream fileFournisseur;
+    
+    fileVin.open(dirVin,ios::out);
+    fileCave.open(dirCaves,ios::out);
+    fileFournisseur.open(dirFournisseurs,ios::out);
+
+
+
+    for(Vin v : vins){
+        Vin* vptr = &v;
+        fileVin << vptr->getSaveFormat();
+    }
+
+    fileVin.close();
+    fileCave.close();
+    fileFournisseur.close();
 }
+
 
 
 int main(){
@@ -30,5 +54,8 @@ int main(){
     cave1->afficherResume();
     cave1->afficherListeVente();
     cave1->afficherListeVins();
+    vins.push_back(*Vin1);
+    vins.push_back(*Vin2);
+    Save(vins,caves,fournisseurs);
 }
 

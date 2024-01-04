@@ -22,6 +22,7 @@ class Cave{
         std::vector<Vente*> listeVente;
     public :
         Cave(int identifier, std::string nom, std::string adresse);
+        ~Cave();
         bool ajouterVin(Vin* vin, float prix);//ajouter un vin a la vente
         void RetirerVin(Vin *vin);
         Vin *getVin(int i);

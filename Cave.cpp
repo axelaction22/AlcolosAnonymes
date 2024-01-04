@@ -14,9 +14,13 @@ Cave::Cave(int identifier, string nom, string adresse){
     this->nom = nom;
     this->adresse = adresse;
 }
+
+Cave::~Cave(){
+    while(listeVins.size() != 0){
+        RetirerVin(listeVins.at(0));
+    }
+}
 /// @brief ajoute un vin a une cave et crée l'association Vente avec le prix de vente.
-/// @param vin 
-/// @param p
 /// @returns true si succes et false si vin deja present 
 bool Cave::ajouterVin(Vin *vin, float prix){
     //Si on ne trouve pas le vin dans la liste, on le rajoute
