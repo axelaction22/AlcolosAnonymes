@@ -59,7 +59,7 @@ string VinGarde::getSaveFormat(){
 /// @brief chaine de caractere representant les donnés d'un VinGarde, pour sauvegarde.
 string VinConso::getSaveFormat(){
     string s = "";
-    s += "G;";
+    s += "C;";
     s += to_string(identifiant) + ";"; // std::to_string to convert in to string 
     s += regionProd  + ";";
     s += cru  + ";";

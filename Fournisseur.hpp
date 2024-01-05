@@ -47,6 +47,8 @@ class Fournisseur{
         void afficherResume();
         void afficherListeOffres();
         void afficherListeReductions();
+        bool operator==(const Fournisseur& f) const ;
+        std::string getSaveFormat();
 };
 
 #endif

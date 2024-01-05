@@ -54,6 +54,15 @@ void Fournisseur::afficherListeReductions(){
     }
 }
 
+bool Fournisseur::operator==(const Fournisseur& f) const {
+            return (
+                identifiant == f.identifiant &&
+                nom == f.nom &&
+                adresse == f.adresse &&
+                equal(offres.begin(),offres.end(),f.offres.begin()) &&
+                equal(reductionsOffertes.begin(),reductionsOffertes.end(),f.reductionsOffertes.begin())
+            );
+        }
 
 
 
