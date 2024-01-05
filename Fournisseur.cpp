@@ -3,10 +3,14 @@
 
 #include "Fournisseur.hpp"
 #include<algorithm>
+#include<string>
+#include<vector>
+
+using namespace std;
 
 //Fournisseur, etablissemant vendant des vins, fournissant des Offres de Vin et pouvant appliquer des Reductions
 
-Fournisseur::Fournisseur(string identifiant, string nom, string adresse){
+Fournisseur::Fournisseur(int identifiant, string nom, string adresse){
     this->identifiant = identifiant;
     this->nom         = nom;
     this->adresse     = adresse;
@@ -64,6 +68,30 @@ bool Fournisseur::operator==(const Fournisseur& f) const {
             );
         }
 
+string Fournisseur::getSaveFormat(vector<VinGarde> vinsGardes,vector<VinConso> vinsConsos){
+    string s = "";
+    s += to_string(identifiant) + "\n";
+    s += nom + "\n";
+    s += adresse + "\n[\n";
+    for(Offre* offre : offres){//sauvegarde du code de Vin + prix
+        for(int i=0;i<vinsGardes.size();i++){
+            if(offre->getVin()->getNom() == vinsGardes.at(i).getNom()){
+                s += "G" + to_string(i) + "\n";
+                s += to_string(offre->getPrix())+"\n";
+            }
+            if(offre->getVin()->getNom() == vinsConsos.at(i).getNom()){
+                s += "C" + to_string(i) + "\n";
+                s += to_string(offre->getPrix())+"\n";
+            }
+        }
+    } s += "]\n[\n";//Fin des offres du fournisseur, debut des reducs
+    for(Reduction* reduc : reductionsOffertes){
+        s +=  to_string(reduc->getBouteillesMin())+ "\n";
+        s +=  to_string(reduc->getBouteillesMax())+ "\n";
+        s +=  to_string(reduc->getPercentage())   + "\n";
+    } 
+}
+
 
 
 
@@ -101,7 +129,14 @@ void Reduction::afficherResume(){
     cout<<"Nombre de bouteilles minimun :"<<BouteillesMin<<endl;
     cout<<"Nombre de bouteilles maximun :"<<BouteillesMax<<endl;
 }
-
-
+float Reduction::getPercentage() const {
+    return percentage;
+}
+int Reduction::getBouteillesMax() const {
+    return BouteillesMax;
+}
+int Reduction::getBouteillesMin() const {
+    return BouteillesMin;
+}
 
 #endif
