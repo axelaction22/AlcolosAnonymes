@@ -45,11 +45,21 @@ Reduction* Fournisseur::creerReduction(int min, int max, float percent){
 void Fournisseur::deleteReduction(Reduction* reduc){
     reductionsOffertes.erase(find(reductionsOffertes.begin(),reductionsOffertes.end(),reduc));
 }
-void Fournisseur::afficherResume(){
+int Fournisseur::getIdentifiant(){return identifiant;}
+string Fournisseur::getNom(){return nom;}
+void Fournisseur::afficherResume()const{
     cout<<"Nom du Fournisseur :"<<nom<<endl;
     cout<<"Adresse :"<<adresse<<endl;
 }
-void Fournisseur::afficherListeOffres(){
+
+void Fournisseur::afficherOffresvin(Vin *vin){
+    for (Offre* offre : offres) {
+        if (offre != nullptr && offre->getVin()==vin) { // Vérifie que le pointeur n'est pas nul avant de l'utiliser
+           offre->afficherResume();
+        }
+    }
+}
+void Fournisseur::afficherListeOffres()const{
     cout<<"Liste des Offres du Fournisseur : "<<nom<<endl;
     for (Offre* offre : offres) {
         if (offre != nullptr) { // Vérifie que le pointeur n'est pas nul avant de l'utiliser
@@ -57,7 +67,7 @@ void Fournisseur::afficherListeOffres(){
         }
     }
 }
-void Fournisseur::afficherListeReductions(){
+void Fournisseur::afficherListeReductions()const{
     cout<<"Liste des Reductions du Fournisseur : "<<nom<<endl;
     for (Reduction* reduction : reductionsOffertes) {
         if (reduction != nullptr) { // Vérifie que le pointeur n'est pas nul avant de l'utiliser

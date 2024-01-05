@@ -7,6 +7,7 @@
 
 #include<vector>
 #include<string>
+using namespace std;
 
 #include<vector>
 #include"Vin.hpp"
@@ -28,14 +29,18 @@ class Cave{
         bool ajouterVin(Vin* vin, float prix);//ajouter un vin a la vente
         void RetirerVin(Vin* vin);
         std::vector<Vin*> getListeVin();
-        Vin*   getVin(int i);
+        Vin* getVin(int i);
+        bool ajouterVente(Vente* vente);///ajoute une vente que propose la cave
+        int getNombreVin();
         Vente* getVente(int i);
+        int getNombreVente();
         void prendreOffre(Offre* const offre);
         void retirerOffre(Offre* const offre);
-
-        void afficherResume();
-        void afficherListeVins();
-        void afficherListeVente();
+        std::string getNom();
+        int getIdentifiant();
+        void afficherResume() const;
+        void afficherListeVins() const;
+        void afficherListeVente() const;
         std::string getSaveFormat(std::vector<VinGarde> const vinsGarde,std::vector<VinConso> const vinsConso,std::vector<Fournisseur> fournisseurs);
 
 };
@@ -57,7 +62,7 @@ class Vente{
         void prendreOffre(Offre* const offre);
         void retirerOffre(Offre* const offre);
         std::vector<Offre*> getListeOffre();
-        void afficherResume();
+        void afficherResume () const ;
         void afficherListeOffre();
 };
 

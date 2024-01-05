@@ -53,11 +53,12 @@ std::vector<Vin *> Cave::getListeVin()
 {
     return listeVins;
 }
-Vin *Cave::getVin(int i)
-{
+Vin* Cave::getVin(int i){
     return listeVins.at(i);
 }
+int Cave::getNombreVin(){return listeVins.size();}
 Vente* Cave::getVente(int i){return listeVente.at(i);}
+int Cave::getNombreVente(){return listeVente.size();}
 void Cave::prendreOffre(Offre* const offre){
     for (Vente* vente : listeVente){
         if(vente->getVin() == offre->getVin()){
@@ -71,12 +72,20 @@ void Cave::retirerOffre(Offre* const offre){
     }
 }
 
-void Cave::afficherResume(){
+string Cave::getNom(){
+    return nom;
+}
+int Cave::getIdentifiant(){
+    return identifier;
+}
+
+void Cave::afficherResume()const{
+    cout<<"Identifiant: "<<identifier<<endl;
     cout<<"Nom: "<<nom<<endl;
     cout<<"Adresse: "<<adresse<<endl;
 }
 //Affiche un rapide résumer des Vins- Pourra avoir de chaque vin via la fonction afficherdetail() dans vin
-void Cave::afficherListeVins(){
+void Cave::afficherListeVins()const{
     cout<<"Liste des Vins: "<<endl;
     for (Vin* vin : listeVins) {
         if (vin != nullptr) { // Vérifie que le pointeur n'est pas nul avant de l'utiliser
@@ -86,7 +95,7 @@ void Cave::afficherListeVins(){
 }
 }
 //Affiche un rapide résumer des ventes - Pourra avoir de chaque vente via la fonction afficherdetail() dans vente
-void Cave::afficherListeVente(){
+void Cave::afficherListeVente()const{
     cout<<"Liste des Ventes: "<<endl;
     for (Vente* vente : listeVente) {
         if (vente != nullptr) { // Vérifie que le pointeur n'est pas nul avant de l'utiliser
@@ -142,6 +151,7 @@ Vente:: Vente(Cave* c, Vin* v, float prix){
     vendeur = c;
     vin = v;
     prixVente = prix;
+    
 }
 Cave*   Vente::getVendeur(){return vendeur;}
 void    Vente::setVendeur(Cave* c){vendeur = c;}
@@ -163,7 +173,7 @@ void Vente::retirerOffre(Offre* const offre){
     listeOffre.erase(find(listeOffre.begin(),listeOffre.end(),offre));
 }
 
-void Vente::afficherResume(){
+void Vente::afficherResume() const{
     cout<<"Cave :"<<endl;
     vendeur->afficherResume();
     cout<<"Vin :"<<endl;

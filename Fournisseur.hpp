@@ -49,9 +49,13 @@ class Fournisseur{
         void deleteOffre(Offre* offre,vector<Cave> const listeCave);
         Reduction* creerReduction(int min, int max, float percent);
         void deleteReduction(Reduction* reduc);
-        void afficherResume();
-        void afficherListeOffres();
-        void afficherListeReductions();
+        int getIdentifiant();
+        string getNom();
+        void afficherOffresvin(Vin *vin);
+
+        void afficherResume() const;
+        void afficherListeOffres() const;
+        void afficherListeReductions() const;
         bool operator==(const Fournisseur& f) const ;
         std::string getSaveFormat(vector<VinGarde> vinsGardes,vector<VinConso> vinsConsos);
 };
