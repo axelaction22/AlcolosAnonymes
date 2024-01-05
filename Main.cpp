@@ -25,12 +25,19 @@ void Save(vector<VinGarde> const vinsGarde, vector<VinConso> const  vinsConso,ve
 
     //important l'ordre de sauvegarde et de chargement est Vin >> Fournisseur >> Cave
     //du au besoin d'information des classes precedentes.
+    //(techniquement pas obligatoire pour sauvegarde mais definitivement pour chargement)
 
     for(VinGarde vg : vinsGarde){
         fileVin << vg.getSaveFormat();
     }
     for(VinConso vc : vinsConso){
         fileVin << vc.getSaveFormat();
+    }
+    for(Fournisseur f : fournisseurs){
+        fileFournisseur << f.getSaveFormat(vinsGarde,vinsConso);
+    }
+    for(Cave c : caves){
+        fileCave << c.getSaveFormat(vinsGarde,vinsConso,fournisseurs);
     }
 
     fileVin.close();
