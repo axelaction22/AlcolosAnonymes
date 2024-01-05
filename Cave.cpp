@@ -49,7 +49,12 @@ void Cave::RetirerVin(Vin* vin){
         listeVente.erase(it);
     }
 }
-Vin* Cave::getVin(int i){
+std::vector<Vin *> Cave::getListeVin()
+{
+    return listeVins;
+}
+Vin *Cave::getVin(int i)
+{
     return listeVins.at(i);
 }
 Vente* Cave::getVente(int i){return listeVente.at(i);}
@@ -123,7 +128,7 @@ string Cave::getSaveFormat(vector<VinGarde> vinsGarde,vector<VinConso> vinsConso
         }
     
     }
-    s+= "]";
+    s+= "]\n}\n";
 
 
     return s;

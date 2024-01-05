@@ -8,8 +8,10 @@
 #include<vector>
 #include<string>
 
+#include<vector>
 #include"Vin.hpp"
 #include"Fournisseur.hpp"
+class Fournisseur;
 class Offre;
 class Vente;
 //represente une cave vendant des vins;
@@ -25,7 +27,8 @@ class Cave{
         ~Cave();
         bool ajouterVin(Vin* vin, float prix);//ajouter un vin a la vente
         void RetirerVin(Vin* vin);
-        Vin *getVin(int i);
+        std::vector<Vin*> getListeVin();
+        Vin*   getVin(int i);
         Vente* getVente(int i);
         void prendreOffre(Offre* const offre);
         void retirerOffre(Offre* const offre);
@@ -33,7 +36,7 @@ class Cave{
         void afficherResume();
         void afficherListeVins();
         void afficherListeVente();
-        std::string getSaveFormat(vector<VinGarde> const vinsGarde,vector<VinConso> const vinsConso,vector<Fournisseur> fournisseurs);
+        std::string getSaveFormat(std::vector<VinGarde> const vinsGarde,std::vector<VinConso> const vinsConso,std::vector<Fournisseur> fournisseurs);
 
 };
 // Classe d'association avec vin, prix de vente par vin

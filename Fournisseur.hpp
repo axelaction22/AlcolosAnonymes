@@ -43,6 +43,8 @@ class Fournisseur{
         std::vector<Reduction*> reductionsOffertes;
     public :
         Fournisseur(int identifiant, std::string nom, std::string adresse);
+        std::vector<Offre*> getListeOffre();
+        std::vector<Reduction*> getListeReduction();
         Offre* CreerOffre(Vin* v, float price);
         void deleteOffre(Offre* offre,vector<Cave> const listeCave);
         Reduction* creerReduction(int min, int max, float percent);

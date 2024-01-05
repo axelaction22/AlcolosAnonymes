@@ -9,6 +9,81 @@
 
 using namespace std;
 
+void Load(vector<VinGarde>* vinsGarde, vector<VinConso>* vinsConso, vector<Cave>* caves, vector<Fournisseur>* fournisseurs){
+    //etape 1, vider les listes existantes
+    for(Fournisseur f : *fournisseurs){
+        while(f.getListeOffre().size()>0){
+            f.deleteOffre(f.getListeOffre().at(0),*caves);
+        }
+        while(f.getListeReduction().size() > 0){
+            f.deleteReduction(f.getListeReduction().at(0));
+        }
+    }
+    while(fournisseurs->size() > 0){
+        fournisseurs->erase(fournisseurs->begin());
+    }
+
+    for(Cave c : *caves){
+        while(c.getListeVin().size() > 0){
+            c.RetirerVin(c.getListeVin().at(0));
+        }
+    }
+    while(caves->size() > 0){
+        caves->erase(caves->begin());
+    }
+    while(vinsConso->size() > 0){
+        vinsConso->erase(vinsConso->begin());
+    }
+    while(vinsGarde->size() > 0){
+        vinsGarde->erase(vinsGarde->begin());
+    }
+    
+    
+    
+    
+    
+    //etape 2 reconstruire les listes sauvegardées
+    string dirVin = "SavedWines.txt";
+    string dirCaves = "SavedCaves.txt";
+    string dirFournisseurs = "SavedFournisseurs.txt";
+    
+
+
+
+    //Chargement des vins
+    ifstream file(dirVin);
+    string line;
+    while(getline(file,line)){
+        if(line.substr(0,0) == "G"){
+            
+            size_t semicolon = line.find(";");//emplacemet du ; trouvé
+            int identifiant  = stoi(line.substr(2,2));//ne bougera jamais
+
+            semicolon = line.find(";",4);
+            string regionProd = line.substr(semicolon,line.find(";")-1);
+
+            semicolon = line.find(";",semicolon+1);
+            string cru = line.substr(semicolon,line.find(";")-1);
+
+            semicolon = line.find(";",semicolon+1);
+            string nom = line.substr(semicolon,line.find(";")-1);
+
+            semicolon = line.find(";",semicolon+1);
+            int millesime = stoi(line.substr(semicolon,line.find(";")-1));
+
+            semicolon = line.find(";",semicolon+1);
+            string conservMin = line.substr(semicolon,line.find(";")-1);
+
+            vinsGarde->push_back(VinGarde(identifiant,regionProd,cru,nom,millesime,conservMin));
+        }
+       
+    }
+
+
+
+
+    
+}
 
 void Save(vector<VinGarde> const vinsGarde, vector<VinConso> const  vinsConso,vector<Cave> const caves,vector<Fournisseur> const fournisseurs){
     //sauvegarde les trois objets principaux et leurs liens,dans l'emplacement d'ou est appelé l'executable
@@ -53,7 +128,7 @@ int main(){
     vector<Cave> caves;
     vector<Fournisseur> fournisseurs;
     // Ces listes contiennent toutes les instances d'objets, tout objet en connaissant un autre doit recuperer un pointeur vers celui-ci 
-
+    /*
     Cave *cave1 = new Cave(01,"Cave Bordeaux","bordeaux, duh");
     Cave *cave2 = new Cave(02,"Cave Champagne","champagne");
     VinGarde* Vin1 = new VinGarde(1,"Bordeaux","AOP","Chateau Quelquechose",2003,"3 years");
@@ -62,16 +137,19 @@ int main(){
     cave1->ajouterVin(Vin2, 35.0);
     
 
-    cave1->afficherResume();
-    cave1->afficherListeVente();
-    cave1->afficherListeVins();
     vinsGarde.push_back(*Vin1);
     vinsConso.push_back(*Vin2);
     caves.push_back(*cave1);
-    Save(vinsGarde,vinsConso,caves,fournisseurs);
+    */
+
+    Load(&vinsGarde,&vinsConso,&caves,&fournisseurs);
+    vinsConso.at(0).afficherResume();
+    vinsGarde.at(0).afficherResume();
+    /*
     delete Vin1;
     delete Vin2;
     delete cave1;
     delete cave2;
+    */
 }
 

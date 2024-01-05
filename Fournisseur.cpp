@@ -15,7 +15,16 @@ Fournisseur::Fournisseur(int identifiant, string nom, string adresse){
     this->nom         = nom;
     this->adresse     = adresse;
 }
-Offre* Fournisseur::CreerOffre(Vin* v, float price){
+std::vector<Offre *> Fournisseur::getListeOffre()
+{
+    return offres;
+}
+std::vector<Reduction *> Fournisseur::getListeReduction()
+{
+    return reductionsOffertes;
+}
+Offre *Fournisseur::CreerOffre(Vin *v, float price)
+{
     Offre* offre = new Offre(v,price,this);
     offres.push_back(offre);
     return offre;
