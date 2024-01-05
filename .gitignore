@@ -1,7 +1,3 @@
 /.vscode
-<<<<<<< Updated upstream
 *.exe
-
-=======
-*.exe
->>>>>>> Stashed changes
+*.txt
