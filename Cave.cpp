@@ -103,12 +103,12 @@ string Cave::getSaveFormat(vector<VinGarde> vinsGarde,vector<VinConso> vinsConso
     for(Vente* v : listeVente){
         for(int i =0; i<vinsGarde.size();i++){
             if(vinsGarde.at(i).getNom() == v->getVin()->getNom()){
-                s+= "G"+to_string(i)+"\n"   + to_string(v->getPrixVente());
+                s+= "G"+to_string(i)+"\n"   + to_string(v->getPrixVente()) +"\n";
             }
         }
         for(int i=0;i<vinsConso.size();i++){
             if(vinsConso.at(i).getNom() == v->getVin()->getNom()){
-                s+= "C"+to_string(i)+"\n"   + to_string(v->getPrixVente());
+                s+= "C"+to_string(i)+"\n"   + to_string(v->getPrixVente())+"\n";
             }
         }//on ne sauvegarde pas les données du vin mais son type et sa place dans la liste.
 
@@ -117,13 +117,13 @@ string Cave::getSaveFormat(vector<VinGarde> vinsGarde,vector<VinConso> vinsConso
         for (Offre* offre : v->getListeOffre()){
             for(int i=0;i<fournisseurs.size();i++){
                 if(fournisseurs.at(i) == *(offre->getFournisseur())){
-                    
+                    s += to_string(i)+"\n";
                 }
             }
         }
     
     }
-
+    s+= "]";
 
 
     return s;
