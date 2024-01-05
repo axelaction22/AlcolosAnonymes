@@ -22,8 +22,9 @@ class Cave{
         std::vector<Vente*> listeVente;
     public :
         Cave(int identifier, std::string nom, std::string adresse);
+        ~Cave();
         bool ajouterVin(Vin* vin, float prix);//ajouter un vin a la vente
-        void RetirerVin(Vin *vin);
+        void RetirerVin(Vin* vin);
         Vin *getVin(int i);
         Vente* getVente(int i);
         void prendreOffre(Offre* const offre);
@@ -32,6 +33,7 @@ class Cave{
         void afficherResume();
         void afficherListeVins();
         void afficherListeVente();
+        std::string getSaveFormat(vector<VinGarde> const vinsGarde,vector<VinConso> const vinsConso,vector<Fournisseur> fournisseurs);
 
 };
 // Classe d'association avec vin, prix de vente par vin
@@ -51,7 +53,7 @@ class Vente{
         void setVendeur(Cave* c);
         void prendreOffre(Offre* const offre);
         void retirerOffre(Offre* const offre);
-
+        std::vector<Offre*> getListeOffre();
         void afficherResume();
         void afficherListeOffre();
 };

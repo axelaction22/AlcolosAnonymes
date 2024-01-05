@@ -29,17 +29,20 @@ class Reduction{
     public :
         Reduction(float per,int min, int max);
         void afficherResume();
+        float getPercentage()  const;
+        int getBouteillesMin() const;
+        int getBouteillesMax() const;
 };
 
 class Fournisseur{
     private :
-        std::string identifiant;
+        int identifiant;
         std::string nom;
         std::string adresse;
         std::vector<Offre*> offres;
         std::vector<Reduction*> reductionsOffertes;
     public :
-        Fournisseur(std::string identifiant, std::string nom, std::string adresse);
+        Fournisseur(int identifiant, std::string nom, std::string adresse);
         Offre* CreerOffre(Vin* v, float price);
         void deleteOffre(Offre* offre,vector<Cave> const listeCave);
         Reduction* creerReduction(int min, int max, float percent);
@@ -47,6 +50,8 @@ class Fournisseur{
         void afficherResume();
         void afficherListeOffres();
         void afficherListeReductions();
+        bool operator==(const Fournisseur& f) const ;
+        std::string getSaveFormat(vector<VinGarde> vinsGardes,vector<VinConso> vinsConsos);
 };
 
 #endif

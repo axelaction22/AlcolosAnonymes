@@ -14,9 +14,13 @@ Cave::Cave(int identifier, string nom, string adresse){
     this->nom = nom;
     this->adresse = adresse;
 }
+
+Cave::~Cave(){
+    while(listeVins.size() != 0){
+        RetirerVin(listeVins.at(0));
+    }
+}
 /// @brief ajoute un vin a une cave et crée l'association Vente avec le prix de vente.
-/// @param vin 
-/// @param p
 /// @returns true si succes et false si vin deja present 
 bool Cave::ajouterVin(Vin *vin, float prix){
     //Si on ne trouve pas le vin dans la liste, on le rajoute
@@ -86,6 +90,47 @@ void Cave::afficherListeVente(){
         }
 }
 }
+vector<Offre*> Vente::getListeOffre(){
+    return listeOffre;
+}
+
+string Cave::getSaveFormat(vector<VinGarde> vinsGarde,vector<VinConso> vinsConso,vector<Fournisseur> fournisseurs){
+    string s = "";
+    s += "{\n";
+    s += to_string(identifier) + "\n"; //conversion int to string
+    s += nom  + "\n";
+    s += adresse + "\n[";
+    for(Vente* v : listeVente){
+        for(int i =0; i<vinsGarde.size();i++){
+            if(vinsGarde.at(i).getNom() == v->getVin()->getNom()){
+                s+= "G"+to_string(i)+"\n"   + to_string(v->getPrixVente());
+            }
+        }
+        for(int i=0;i<vinsConso.size();i++){
+            if(vinsConso.at(i).getNom() == v->getVin()->getNom()){
+                s+= "C"+to_string(i)+"\n"   + to_string(v->getPrixVente());
+            }
+        }//on ne sauvegarde pas les données du vin mais son type et sa place dans la liste.
+
+
+        //les sources du vin sont sauvegardées en ayant juste le fournisseur de l'offre par sa position dans la liste.
+        for (Offre* offre : v->getListeOffre()){
+            for(int i=0;i<fournisseurs.size();i++){
+                if(fournisseurs.at(i) == *(offre->getFournisseur())){
+                    
+                }
+            }
+        }
+    
+    }
+
+
+
+    return s;
+}
+
+
+
 
 //Vente : 
 Vente:: Vente(Cave* c, Vin* v, float prix){
